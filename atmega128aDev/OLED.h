@@ -8,17 +8,66 @@
 
 #ifndef OLED_H_
 #define OLED_H_
+#include "bitDefines.h"
 //reference  http://www.buydisplay.com/download/democode/ER-OLED0.96-1_I2C_DemoCode.txt
+//datasheet http://www.buydisplay.com/download/ic/SSD1306.pdf
+#define OLED_dc_ddr		DDRA
+#define OLED_rst_ddr	DDRA
+#define OLED_sda_ddr	DDRA
+#define OLED_scl_ddr	DDRA
 
+
+#define OLED_dc_port	PORTA
+#define OLED_rst_port	PORTA
+#define OLED_sda_port	PORTA
+#define OLED_scl_port	PORTA
+
+#define OLED_dc_pin		PORTA0
+#define OLED_rst_pin	PORTA1
+#define OLED_sda_pin	PORTA2
+#define OLED_scl_pin	PORTA3
+
+#define OLED_dc_read	PINA
+#define OLED_rst_read	PINA
+#define OLED_sda_read	PINA
+#define OLED_scl_read	PINA
 class OLED{
-	
+	unsigned long 
 	public:
 		OLED();
-		initPins();
-		initLED();
-	
-	
+		void initPins(void);
+		void initOLED(void);
+		void write(char data,bool isData);
+		unsigned char read(void);
+		void writeData(char data);
+		void writeCmd(char cmd);
+		void fill(unsigned char data);
+		void setPos(unsigned char x,unsigned char y);
+		void clrscr(void);
 	private:
+		void setStartColumn(unsigned char d);
+		void setAddressingMode(unsigned char d);
+		void setColumnAddress(unsigned char a, unsigned char b);
+		void SetPageAddress(unsigned char a, unsigned char b);
+		void setStartLine(unsigned char d);
+		void setContrastControl(unsigned char d);
+		void setChargePump(unsigned char d);
+		void setSegmentRemap(unsigned char d);
+		void setEntireDisplay(unsigned char d);
+		void setInverseDisplay(unsigned char d);
+		void setMultiplexRatio(unsigned char d);
+		void setDisplayOnOff(unsigned char d);
+		void setStartPage(unsigned char d);
+		void setCommonRemap(unsigned char d);
+		void setDisplayOffset(unsigned char d);
+		void setDisplayClock(unsigned char d);
+		void setPrechargePeriod(unsigned char d);
+		void setCommonConfig(unsigned char d);
+		void setVCOMH(unsigned char d);
+		void setNOP(void);
+		
+	private:
+		const int usDelay=1;
 		const unsigned char F6x8[][6] =
 		{
 			{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },   // sp
