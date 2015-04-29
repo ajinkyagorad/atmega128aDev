@@ -12,12 +12,15 @@ OLED::OLED()
 }
 void OLED::initOLED()
 {
-	unsigned char i;
+	//unsigned char i;
 	//make scl high
+	setBit(OLED_scl_port,OLED_scl_pin);
 	//make rst low
+	clrBit(OLED_rst_port,OLED_rst_pin);
 	//delay 50 ms
+	_delay_ms(50);
 	//make rst high
-	
+	setBit(OLED_rst_port,OLED_rst_pin);
 	setDisplayOnOff(0x00);		  // Display Off (0x00/0x01)
 	setDisplayClock(0x80);		  // Set Clock as 100 Frames/Sec
 	setMultiplexRatio(0x3F);	  // 1/64 Duty (0x0F~0x3F)
@@ -37,7 +40,7 @@ void OLED::initOLED()
 	fill(0x00);                               //clear all
 	setPos(0,0);
 }
-void OLED::fill(void)
+void OLED::fill(unsigned char data)
 {
 	unsigned char x,y;
 	for(y=0;y<8;y++)
@@ -125,13 +128,13 @@ void OLED::cursor(unsigned char column,unsigned char row)
 		writeData(0xFF);
 	}
 }
-void writeData(char data)
+void OLED::writeData(char data)
 {
 	write(data,true);
 }
-void writeCmd(char cmd)
+void OLED::writeCmd(char cmd)
 {
-	write(data,false);
+	write(cmd,false);
 }
 
 unsigned char OLED::read(void)
@@ -306,7 +309,7 @@ void OLED::setNOP(void)
 
 void OLED::P6x8Char(unsigned char x,unsigned char y,unsigned char ch)
 {
-	unsigned char c=0,i=0,j=0;
+	unsigned char c=0,i=0;//,j=0;
 	
 	c =ch-32;
 	if(x>122)
@@ -370,7 +373,7 @@ void OLED::P8x16Str(unsigned char x,unsigned char y,char ch[])
 
 
 
-void OLED::PrintBMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,unsigned char bmp[])
+void OLED::PrintBMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,const unsigned char bmp[])
 {
 	int ii=0;
 	unsigned char x,y;

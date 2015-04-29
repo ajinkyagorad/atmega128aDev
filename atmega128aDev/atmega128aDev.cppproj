@@ -5,7 +5,7 @@
     <ProjectVersion>6.2</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
     <ProjectGuid>{82ce901b-ded1-44ef-aac9-831d85c6cdcf}</ProjectGuid>
-    <avrdevice>ATmega128A</avrdevice>
+    <avrdevice>ATmega328P</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>CPP</Language>
@@ -37,6 +37,7 @@
   </dependencies>
 </framework-data>
     </AsfFrameworkConfig>
+    <avrtool />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -121,6 +122,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="atmega128aDev.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="bitDefines.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lookupOLED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OLED.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="OLED.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
