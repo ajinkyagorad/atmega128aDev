@@ -1,3 +1,3 @@
 # Controlling OLED with arduino Meaga (I2C)
-[Reference](http://www.instructables.com/id/Monochrome-096-i2c-OLED-display-with-arduino-SSD13/)
-
+[reference]( http://www.buydisplay.com/download/democode/ER-OLED0.96-1_I2C_DemoCode.txt)
+[datasheet]( http://www.buydisplay.com/download/ic/SSD1306.pdf)
